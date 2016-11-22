@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private Connection connectDB(){
+    public Connection connectDB(){
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

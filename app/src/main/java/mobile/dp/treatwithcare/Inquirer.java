@@ -4,11 +4,15 @@ package mobile.dp.treatwithcare;
 import android.os.StrictMode;
 import android.util.Log;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Daniel Velasco
@@ -45,6 +49,8 @@ public class Inquirer
      */
     public void addMedication(String newMedicationSpecs) //throws
     {
+        String medInfo = null;
+
         try {
             String query = "INSERT INTO " + DB + ".MEDICATION VALUES ("+ newMedicationSpecs +");";
             Statement stmt = DBCon.createStatement();
@@ -52,5 +58,55 @@ public class Inquirer
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    /**
+     * This method retrieves information about a patient's medication records relation on
+     * the MySQL web server.
+     *
+     * @param PID   A patient ID
+     * @param DID   The doctor who prescribed/approved this medication<br>
+     *              If DID = null, all medication records pertaining to a specific
+     *              patient will be retrieved, regardless of who the doctor was.
+     *
+     * @return      a list of medication specifications, including its name, dosage,
+     *              instructions, and side effects.
+     *
+     */
+    public ArrayList<ArrayList<String>> selectMedication(String PID, String DID) {
+
+        ResultSet Medication = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+
+        try {
+
+            String query = "SELECT MName, MDosage, MInstructions, MSideEffects FROM MEDICATION WHERE ";
+            query += PID;
+            if (DID != null)
+                query += " " + DID;
+            query += ";";
+            Statement stmt = DBCon.createStatement();
+            Medication = stmt.executeQuery(query);
+
+            while (Medication.next()) {
+                ArrayList<String> row = new ArrayList<String>();
+
+                for (int i = 0; i < 4; i++) {
+                    row.add(Medication.getString("MName"));
+                    row.add(Medication.getString("MDosage"));
+                    row.add(Medication.getString("MInstructions"));
+                    row.add(Medication.getString("MSideEffects"));
+                }
+
+                result.add(row);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
