@@ -41,26 +41,15 @@ public class Inquirer
     }
 
 
-    /**
-     * This method adds a new row to the MEDICATION relation on the MySQL web server.
-     *
-     * @param newMedicationSpecs    Properly formatted tuple with the following information
-     *                              'MName', 'PatID', 'DocID', 'MDosage', 'MInstructions', 'MSideEffects'
-     */
-    public void addMedication(String newMedicationSpecs) //throws
-    {
-        String medInfo = null;
 
-        try {
-            String query = "INSERT INTO " + DB + ".MEDICATION VALUES ("+ newMedicationSpecs +");";
-            Statement stmt = DBCon.createStatement();
-            stmt.execute(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    ResultSet selectDoctor(String PID, String DID) {
+        return null;
     }
 
+    ResultSet selectImages(String PID, String DID, String Approval)
+    {
+        return null;
+    }
 
     /**
      * This method retrieves information about a patient's medication records relation on
@@ -75,38 +64,77 @@ public class Inquirer
      *              instructions, and side effects.
      *
      */
-    public ArrayList<ArrayList<String>> selectMedication(String PID, String DID) {
+    ResultSet selectMedication(String PID, String DID) {
 
         ResultSet Medication = null;
-        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 
         try {
 
             String query = "SELECT MName, MDosage, MInstructions, MSideEffects FROM MEDICATION WHERE ";
-            query += PID;
+            if (PID != null)
+                query +="PatID=" + PID;
             if (DID != null)
-                query += " " + DID;
+                query += ", DocID=" + DID;
             query += ";";
             Statement stmt = DBCon.createStatement();
             Medication = stmt.executeQuery(query);
-
-            while (Medication.next()) {
-                ArrayList<String> row = new ArrayList<String>();
-
-                for (int i = 0; i < 4; i++) {
-                    row.add(Medication.getString("MName"));
-                    row.add(Medication.getString("MDosage"));
-                    row.add(Medication.getString("MInstructions"));
-                    row.add(Medication.getString("MSideEffects"));
-                }
-
-                result.add(row);
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return result;
+        return Medication;
     }
+
+    ResultSet selectPatient(String PID) {
+        return null;
+    }
+
+
+    void addImage(String newImageSpecs) {
+
+    }
+
+    /**
+     * This method adds a new row to the MEDICATION relation on the MySQL web server.
+     *
+     * @param newMedicationSpecs    Properly formatted tuple with the following information
+     *                              'MName', 'PatID', 'DocID', 'MDosage', 'MInstructions', 'MSideEffects'
+     */
+    void addMedication(String newMedicationSpecs)
+    {
+        String medInfo = null;
+
+        try {
+            String query = "INSERT INTO " + DB + ".MEDICATION VALUES ("+ newMedicationSpecs +");";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void modifyApproval() {
+
+    }
+
+    void modifyClusterName() {
+
+    }
+
+    void modifySeverityGrade() {
+
+    }
+
+    void removeImage() {
+
+    }
+
+    void removeMedication() {
+
+    }
+
+
+
 }
