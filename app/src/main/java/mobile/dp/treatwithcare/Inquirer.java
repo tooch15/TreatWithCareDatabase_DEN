@@ -1,6 +1,7 @@
 package mobile.dp.treatwithcare;
 
 
+import android.graphics.Bitmap;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -42,13 +43,47 @@ public class Inquirer
 
 
 
-    ResultSet selectDoctor(String PID, String DID) {
-        return null;
+    ResultSet selectDoctor(String DID) {
+
+        ResultSet Doctor = null;
+
+        try {
+
+            String query = "SELECT DocID, DName, DLocation, DPhoneNo FROM DOCTOR WHERE ";
+            query += "DocID=" + DID +";";
+            Statement stmt = DBCon.createStatement();
+            Doctor = stmt.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Doctor;
     }
 
     ResultSet selectImages(String PID, String DID, String Approval)
     {
-        return null;
+        ResultSet Images = null;
+
+        try {
+
+            String query = "SELECT ImageID, DateTaken, DocID, PatID, ClusterNo, Approval FROM IMAGE WHERE ";
+            query += "PatID=" + PID +" AND DocID=" + DID;
+            if(Approval != null)
+                query += " AND Approval=" + Approval;
+            else {
+                // TODO Join image with condition instance to get the approval
+            }
+            query += ";";
+
+            Statement stmt = DBCon.createStatement();
+            Images = stmt.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Images;
     }
 
     /**
@@ -87,11 +122,33 @@ public class Inquirer
     }
 
     ResultSet selectPatient(String PID) {
-        return null;
+
+        ResultSet Patient = null;
+
+        try {
+
+            String query = "SELECT PatID, PName, PLocation, PPhoneNo, DocID FROM PATIENT WHERE ";
+            query += "PatID=" + PID +";";
+            Statement stmt = DBCon.createStatement();
+            Patient = stmt.executeQuery(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Patient;
     }
 
 
-    void addImage(String newImageSpecs) {
+    void addImage(String newImageSpecs, Bitmap Original, Bitmap Acne) {
+
+        try {
+            String query = "INSERT INTO " + DB + ".IMAGE VALUES ("+ newImageSpecs +");"; // TODO How are blobs inserted into a tuple? Can we insert two at the same time?
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -103,8 +160,6 @@ public class Inquirer
      */
     void addMedication(String newMedicationSpecs)
     {
-        String medInfo = null;
-
         try {
             String query = "INSERT INTO " + DB + ".MEDICATION VALUES ("+ newMedicationSpecs +");";
             Statement stmt = DBCon.createStatement();
@@ -112,27 +167,65 @@ public class Inquirer
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    void modifyApproval() {
 
+
+    void modifyApproval(String ImageID, String newApproval) {
+
+        try {
+            String query = "UPDATE " + DB + ".CONDITION_INSTANCE SET Approved="+newApproval;
+            query += " WHERE ImageID="+ImageID+";";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    void modifyClusterName() {
-
+    void modifyClusterNumber(String ImageID, int newCN) {
+        try {
+            String query = "UPDATE " + DB + ".IMAGE SET ClusterNo="+newCN;
+            query += " WHERE ImageID="+ImageID+";";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    void modifySeverityGrade() {
-
+    void modifySeverityGrade(String ImageID, String SG) {
+        try {
+            String query = "UPDATE " + DB + ".CONDITION_INSTANCE SET SeverityGrade="+SG;
+            query += " WHERE ImageID="+ImageID+";";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    void removeImage() {
+    void removeImage(String ImageID) {
+        try {
 
+            // TODO Delete everything that refers to the image being deleted (i.e. Condition instance)
+            String query = "DELETE FROM " + DB + ".IMAGE WHERE ImageID="+ImageID+";";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    void removeMedication() {
-
+    void removeMedication(String MName, String PatID, String DocID) {
+        try {
+            String query = "DELETE FROM " + DB + ".MEDICATION WHERE ";
+            query += "MName="+MName+" AND PatID="+PatID+" AND DocID="+DocID+";";
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

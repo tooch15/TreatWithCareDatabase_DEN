@@ -7,19 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a71cbaf-91fa-405c-8eee-9d2281da2953" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/1_jtds_1_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jtds_1_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java" afterPath="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java" afterPath="$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java" />
     </list>
     <ignored path="TreatWithCare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,32 +31,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Inquirer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Inquirer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="103" column="49" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+            <state vertical-scroll-proportion="3.7373738">
+              <caret line="228" column="5" selection-start-line="228" selection-start-column="5" selection-end-line="228" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
                 <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+                <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
                 <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
                 <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
                 <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-                <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-                <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-                <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-                <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-                <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+                <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InquirerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InquirerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6182635">
+            <state vertical-scroll-proportion="0.0">
               <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1597,14 +1585,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/DBConnection.java" />
         <option value="$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/ExampleUnitTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java" />
         <option value="$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="x" value="558" />
+    <option name="y" value="23" />
+    <option name="width" value="722" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1723,7 +1713,6 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager" selected="JUnit.InquirerTest">
     <configuration default="false" name="treatwithcare in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -2090,7 +2079,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="558" y="23" width="722" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2134,26 +2123,43 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java</url>
+          <line>144</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="103" column="49" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#T04selectImagesByApproval#0;class#InquirerTest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2166,14 +2172,28 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
+            <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2197,14 +2217,11 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2228,26 +2245,23 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java">
@@ -2276,26 +2290,23 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java">
@@ -2324,26 +2335,23 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java">
@@ -2361,26 +2369,23 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
             <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
             <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java">
@@ -2391,13 +2396,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/MainActivity.java">
@@ -2414,33 +2419,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="49" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyApproval#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifyClusterName#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#modifySeverityGrade#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeImage#0;class#Inquirer#0" expanded="false" />
-            <element signature="method#removeMedication#0;class#Inquirer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/test/java/mobile/dp/treatwithcare/InquirerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6182635">
+        <state vertical-scroll-proportion="0.0">
           <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#T04selectImagesByApproval#0;class#InquirerTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/mobile/dp/treatwithcare/Inquirer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.7373738">
+          <caret line="228" column="5" selection-start-line="228" selection-start-column="5" selection-end-line="228" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#selectPatient#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#addImage#0;class#Inquirer#0" expanded="false" />
+            <element signature="docComment;method#addMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#addMedication#0;class#Inquirer#0" expanded="false" />
+            <element signature="method#modifyClusterNumber#0;class#Inquirer#0" expanded="false" />
           </folding>
         </state>
       </provider>
