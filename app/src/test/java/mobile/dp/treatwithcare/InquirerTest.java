@@ -28,11 +28,11 @@ public class InquirerTest
 
 
 
-    static String user = "twc_dev";
-    static String pass = "s3xyasfuck";
-    static String db = "treat_with_care";
-    static String server = "www.db4free.net";
-    static String port = "3306";
+    static String user = "CPSC471_Fall2016_G2";
+    static String pass = "`QP~5rWfR[}m<aV";
+    static String db = "CPSC471_Fall2016_G2";
+    static String server = "136.159.7.84";
+    static String port = "50001";
 
 
     private Inquirer Holmes;
