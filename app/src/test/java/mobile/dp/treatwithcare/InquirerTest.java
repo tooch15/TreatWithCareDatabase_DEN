@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 import static org.junit.Assert.*;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Tests the Inquirer Class, which directly sends queries to the TreatWithCare database
  */
 public class InquirerTest
 {
@@ -40,23 +40,20 @@ public class InquirerTest
 
     public InquirerTest()
     {
-//       StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//       StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
         con = null;
         String connectionURL = null;
 
         try {
 
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            //connectionURL = "jdbc:mysql://"+server+":"+port+"/"+db;
-
             connectionURL = "jdbc:jtds:sqlserver://"+server+":"+port+"/"+db;
             con = DriverManager.getConnection(connectionURL, user, pass);
             if(con == null)
                 throw new Exception();
 
             con.setAutoCommit(true);
-            con.toString();
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -78,11 +75,6 @@ public class InquirerTest
 
     @Test
     public void T03selectImagesByDoctor() {
-
-    }
-
-    @Test
-    public void T04selectImagesByApproval() {
 
     }
 
@@ -111,9 +103,13 @@ public class InquirerTest
 
     }
 
+    /**
     @Test
     public void T10addMedication() {
+        String newMedicationSpecs = "'Adderall','24','1002','2mg','Consume pill with breakfast','Brain damage'";
+        Holmes.addMedication(newMedicationSpecs);
     }
+     */
 
     @Test
     public void T11modifyApproval() {
@@ -138,6 +134,10 @@ public class InquirerTest
     @Test
     public void T15removeMedication() {
 
+        String MName = "'Adderall'";
+        String PatID = "'1002'";
+        String DocID = "'24'";
+        Holmes.removeMedication(MName, PatID, DocID);
     }
 
 }

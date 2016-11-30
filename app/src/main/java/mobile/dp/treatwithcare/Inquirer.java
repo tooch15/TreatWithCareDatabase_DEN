@@ -2,18 +2,11 @@ package mobile.dp.treatwithcare;
 
 
 import android.graphics.Bitmap;
-import android.os.StrictMode;
-import android.util.Log;
-
-import java.sql.Array;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * @author Daniel Velasco
@@ -28,12 +21,7 @@ public class Inquirer
 {
     // Name of the Database
     String DB;
-
     Connection DBCon;
-
-
-
-
 
 
     public Inquirer(Connection con, String DataBase){
@@ -47,10 +35,10 @@ public class Inquirer
 
         ResultSet Doctor = null;
 
-        try {
+        String query = "SELECT * FROM DOCTOR WHERE ";
+        query += "DocID=" + DID +";";
 
-            String query = "SELECT DocID, DName, DLocation, DPhoneNo FROM DOCTOR WHERE ";
-            query += "DocID=" + DID +";";
+        try {
             Statement stmt = DBCon.createStatement();
             Doctor = stmt.executeQuery(query);
 
@@ -61,21 +49,33 @@ public class Inquirer
         return Doctor;
     }
 
-    ResultSet selectImages(String PID, String DID, String Approval)
+    ResultSet selectImages(String PID, String DID, String Approval) throws ForbiddenQueryException
     {
         ResultSet Images = null;
+        String query = "SELECT * FROM IMAGE AS I ";
+
+        if(Approval == null) { // Case where selection is either by patient OR doctor ONLY
+            query += "WHERE ";
+            if (PID != null)
+                query += "I.PatID=" + PID;
+            else if (DID != null)
+                query += "I.DocID=" + DID;
+            else
+                throw new ForbiddenQueryException();
+        }
+        else if(Approval != null) { // Case where selection is by approval AND patient OR Doctor
+            query += ", CONDITION_INSTANCE AS C WHERE ";
+            query += "C.Approval=" + Approval + "AND ";
+            if (PID != null)
+                query += "I.PatID=" + PID;
+            else if (DID != null)
+                query += "I.DocID=" + DID;
+            else
+                throw new ForbiddenQueryException();
+        }
+        query += ";";
 
         try {
-
-            String query = "SELECT ImageID, DateTaken, DocID, PatID, ClusterNo, Approval FROM IMAGE WHERE ";
-            query += "PatID=" + PID +" AND DocID=" + DID;
-            if(Approval != null)
-                query += " AND Approval=" + Approval;
-            else {
-                // TODO Join image with condition instance to get the approval
-            }
-            query += ";";
-
             Statement stmt = DBCon.createStatement();
             Images = stmt.executeQuery(query);
 
@@ -87,8 +87,6 @@ public class Inquirer
     }
 
     /**
-     * This method retrieves information about a patient's medication records relation on
-     * the MySQL web server.
      *
      * @param PID   A patient ID
      * @param DID   The doctor who prescribed/approved this medication<br>
@@ -103,14 +101,14 @@ public class Inquirer
 
         ResultSet Medication = null;
 
-        try {
+        String query = "SELECT MName, MDosage, MInstructions, MSideEffects FROM MEDICATION WHERE ";
+        if (PID != null)
+            query +="PatID=" + PID;
+        else if (DID != null)
+            query += "DocID=" + DID;
+        query += ";";
 
-            String query = "SELECT MName, MDosage, MInstructions, MSideEffects FROM MEDICATION WHERE ";
-            if (PID != null)
-                query +="PatID=" + PID;
-            if (DID != null)
-                query += ", DocID=" + DID;
-            query += ";";
+        try {
             Statement stmt = DBCon.createStatement();
             Medication = stmt.executeQuery(query);
 
@@ -125,10 +123,9 @@ public class Inquirer
 
         ResultSet Patient = null;
 
+        String query = "SELECT PatID, PName, PLocation, PPhoneNo, DocID FROM "+DB+".PATIENT WHERE ";
+        query += "PatID=" + PID +";";
         try {
-
-            String query = "SELECT PatID, PName, PLocation, PPhoneNo, DocID FROM PATIENT WHERE ";
-            query += "PatID=" + PID +";";
             Statement stmt = DBCon.createStatement();
             Patient = stmt.executeQuery(query);
 
@@ -140,16 +137,36 @@ public class Inquirer
     }
 
 
-    void addImage(String newImageSpecs, Bitmap Original, Bitmap Acne) {
-
+    /**
+     * @param newDiagnosis Properly formatted tuple with the following information
+     *                     'SGDate', 'PatID', 'DocID', 'Grading'<br>
+     *                     <i>The Approved attribute is set to 'Pending' by default</i>
+     */
+    void addConditionInstance(String newDiagnosis) {
         try {
-            String query = "INSERT INTO " + DB + ".IMAGE VALUES ("+ newImageSpecs +");"; // TODO How are blobs inserted into a tuple? Can we insert two at the same time?
+            String query = "INSERT INTO CONDITION_INSTANCE VALUES ("+ newDiagnosis +");";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     *
+     * @param newImageSpecs Specifications following the format: 'IDate', 'PatID', 'DocID', 'ClusterNo'
+     * @param Original      Photo taken by patient
+     * @param Acne          Processed image
+     */
+    void addImage(String newImageSpecs, Bitmap Original, Bitmap Acne) {
+
+        try {
+            String query = "INSERT INTO IMAGE VALUES ("+ newImageSpecs +");"; // TODO How are blobs inserted into a tuple? Can we insert two at the same time?
+            Statement stmt = DBCon.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -161,7 +178,7 @@ public class Inquirer
     void addMedication(String newMedicationSpecs)
     {
         try {
-            String query = "INSERT INTO " + DB + ".MEDICATION VALUES ("+ newMedicationSpecs +");";
+            String query = "INSERT INTO MEDICATION VALUES ("+ newMedicationSpecs +");";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
@@ -169,12 +186,10 @@ public class Inquirer
         }
     }
 
-
-
     void modifyApproval(String ImageID, String newApproval) {
 
         try {
-            String query = "UPDATE " + DB + ".CONDITION_INSTANCE SET Approved="+newApproval;
+            String query = "UPDATE CONDITION_INSTANCE SET Approved="+newApproval;
             query += " WHERE ImageID="+ImageID+";";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
@@ -185,7 +200,7 @@ public class Inquirer
 
     void modifyClusterNumber(String ImageID, int newCN) {
         try {
-            String query = "UPDATE " + DB + ".IMAGE SET ClusterNo="+newCN;
+            String query = "UPDATE IMAGE SET ClusterNo="+newCN;
             query += " WHERE ImageID="+ImageID+";";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
@@ -194,9 +209,14 @@ public class Inquirer
         }
     }
 
+    /**
+     *
+     * @param ImageID
+     * @param SG
+     */
     void modifySeverityGrade(String ImageID, String SG) {
         try {
-            String query = "UPDATE " + DB + ".CONDITION_INSTANCE SET SeverityGrade="+SG;
+            String query = "UPDATE CONDITION_INSTANCE SET SeverityGrade="+SG;
             query += " WHERE ImageID="+ImageID+";";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
@@ -205,11 +225,19 @@ public class Inquirer
         }
     }
 
-    void removeImage(String ImageID) {
-        try {
+    /**
+     * This method is used to remove an image from the database
+     *
+     * @param DID   Who this image belongs to
+     * @param PID   This patient's doctor
+     * @param IDate On which the image was taken
+     */
+    void removeImage(String DID, String PID, String IDate) {
 
-            // TODO Delete everything that refers to the image being deleted (i.e. Condition instance)
-            String query = "DELETE FROM " + DB + ".IMAGE WHERE ImageID="+ImageID+";";
+        // TODO Add a cascade trigger for the CONDITION_INSTANCE Table
+        String query = "DELETE FROM IMAGE WHERE PatID="+PID;
+        query += " AND DocID="+DID+"AND IDate="+IDate+";";
+        try {
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
@@ -218,9 +246,10 @@ public class Inquirer
     }
 
     void removeMedication(String MName, String PatID, String DocID) {
+
+        String query = "DELETE FROM MEDICATION WHERE ";
+        query += "MName="+MName+" AND PatID="+PatID+" AND DocID="+DocID+";";
         try {
-            String query = "DELETE FROM " + DB + ".MEDICATION WHERE ";
-            query += "MName="+MName+" AND PatID="+PatID+" AND DocID="+DocID+";";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
