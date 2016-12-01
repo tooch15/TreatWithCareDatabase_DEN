@@ -2,7 +2,6 @@ package mobile.dp.treatwithcare;
 
 
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,6 +77,7 @@ public class Inquirer
         query += ";";
 
         try {
+
             Statement stmt = DBCon.createStatement();
             images = stmt.executeQuery(query);
 
@@ -164,8 +164,13 @@ public class Inquirer
      * @param CN        Number of Clusters
      * @param original  Image uploded by patient
      * @param processed Processed image
+     *
+     * @throws ForbiddenQueryException if both byte arrays are empty
      */
-    void addImage(String IDate, String DID, String PID, String CN, byte[] original, byte[] processed) {
+    void addImage(String IDate, String DID, String PID, String CN, byte[] original, byte[] processed) throws ForbiddenQueryException
+    {
+        if(original.length == 0 && processed.length == 0 )
+            throw new ForbiddenQueryException();
 
         try {
             String query = "INSERT INTO IMAGE VALUES (?, ?, ?, ?, ?, ?);";
@@ -174,7 +179,7 @@ public class Inquirer
             stmt.setString(1, IDate);
             stmt.setString(2, DID);
             stmt.setString(3, PID);
-            stmt.setString(4, PID);
+            stmt.setString(4, CN);
             stmt.setBytes(5, original);
             stmt.setBytes(6, processed);
             stmt.execute();

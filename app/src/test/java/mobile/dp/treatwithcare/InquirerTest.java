@@ -1,15 +1,21 @@
 package mobile.dp.treatwithcare;
 
 
+import android.support.annotation.VisibleForTesting;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
 
 
 import static org.junit.Assert.*;
@@ -65,21 +71,101 @@ public class InquirerTest
     @Ignore
     @Test
     public void T02selectImagesByPatient() {
+        ResultSet patientImages = null;
         try {
-            ResultSet patientImages = Holmes.selectImages("1002", null, null);
+            patientImages = Holmes.selectImages("1002", null, null);
         } catch(ForbiddenQueryException e) {
             fail();
         }
+
+        assertNotNull(patientImages);
+        try {
+            patientImages.next();
+
+            String IDate = patientImages.getDate("IDate").toString();
+            String DocID = Integer.toString(patientImages.getInt("DocID"));
+            String PatID = Integer.toString(patientImages.getInt("PatID"));
+            String ClusterNo = Integer.toString(patientImages.getInt("ClusterNo"));
+            byte[] Original = patientImages.getBytes("Original");
+            byte[] Processed = patientImages.getBytes("Processed");
+
+            assertEquals("2016-11-30", IDate);
+            assertEquals("24", DocID);
+            assertEquals("1002", PatID);
+            assertEquals("8", ClusterNo);
+
+
+            FileOutputStream originalOne = new FileOutputStream(new File("Original"));
+            originalOne.write(Original, 0, Original.length);
+            originalOne.close();
+
+            FileOutputStream processedOne = new FileOutputStream(new File("Processed"));
+            processedOne.write(Processed, 0, Processed.length);
+            processedOne.close();
+
+
+        } catch(SQLException e)
+        {    e.printStackTrace();
+            fail();   }
+        catch(FileNotFoundException e)
+        {   fail();   }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            fail();
+        }
+
     }
 
-    @Ignore
+
     @Test
     public void T03selectImagesByDoctor() {
+
+        ResultSet docImages = null;
         try {
-            ResultSet docPatientImages = Holmes.selectImages(null, "24", null);
+            docImages = Holmes.selectImages(null, "24", null);
         } catch(ForbiddenQueryException e) {
             fail();
         }
+
+        assertNotNull(docImages);
+        try {
+            docImages.next();
+
+            String IDate = docImages.getDate("IDate").toString();
+            String DocID = Integer.toString(docImages.getInt("DocID"));
+            String PatID = Integer.toString(docImages.getInt("PatID"));
+            String ClusterNo = Integer.toString(docImages.getInt("ClusterNo"));
+            byte[] Original = docImages.getBytes("Original");
+            byte[] Processed = docImages.getBytes("Processed");
+
+            assertEquals("2016-11-30", IDate);
+            assertEquals("24", DocID);
+            assertEquals("1002", PatID);
+            assertEquals("8", ClusterNo);
+
+
+            FileOutputStream originalOne = new FileOutputStream(new File("Original"));
+            originalOne.write(Original, 0, Original.length);
+            originalOne.close();
+
+            FileOutputStream processedOne = new FileOutputStream(new File("Processed"));
+            processedOne.write(Processed, 0, Processed.length);
+            processedOne.close();
+
+
+        } catch(SQLException e)
+        {    e.printStackTrace();
+            fail();   }
+        catch(FileNotFoundException e)
+        {   fail();   }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            fail();
+        }
+
+
 
     }
 
@@ -127,6 +213,7 @@ public class InquirerTest
 
     }
 
+    @Ignore
     @Test
     public void T09addImage() {
 
@@ -152,7 +239,10 @@ public class InquirerTest
             e.printStackTrace();
         }
 
-        Holmes.addImage("2016-11-30","24","1002", "8", or, or);
+        try {
+            Holmes.addImage("2016-11-30", "24", "1002", "8", or, or);
+        } catch (ForbiddenQueryException e)
+        { }
     }
 
     @Ignore
