@@ -1,8 +1,10 @@
 package mobile.dp.treatwithcare;
 
 
-import android.graphics.Bitmap;
+
+import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,7 +53,7 @@ public class Inquirer
 
     ResultSet selectImages(String PID, String DID, String Approval) throws ForbiddenQueryException
     {
-        ResultSet Images = null;
+        ResultSet images = null;
         String query = "SELECT * FROM IMAGE AS I ";
 
         if(Approval == null) { // Case where selection is either by patient OR doctor ONLY
@@ -77,13 +79,13 @@ public class Inquirer
 
         try {
             Statement stmt = DBCon.createStatement();
-            Images = stmt.executeQuery(query);
+            images = stmt.executeQuery(query);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return Images;
+        return images;
     }
 
     /**
@@ -106,6 +108,7 @@ public class Inquirer
             query +="PatID=" + PID;
         else if (DID != null)
             query += "DocID=" + DID;
+
         query += ";";
 
         try {
@@ -144,7 +147,7 @@ public class Inquirer
      */
     void addConditionInstance(String newDiagnosis) {
         try {
-            String query = "INSERT INTO CONDITION_INSTANCE VALUES ("+ newDiagnosis +");";
+            String query = "INSERT INTO CONDITION_INSTANCE VALUES (?);";
             Statement stmt = DBCon.createStatement();
             stmt.execute(query);
         } catch (SQLException e) {
@@ -152,18 +155,30 @@ public class Inquirer
         }
     }
 
+
     /**
      *
-     * @param newImageSpecs Specifications following the format: 'IDate', 'PatID', 'DocID', 'ClusterNo'
-     * @param Original      Photo taken by patient
-     * @param Acne          Processed image
+     * @param IDate     Date the picture was taken in the format YYYY-MM-DD
+     * @param DID       Doctor's ID
+     * @param PID       Patient's ID
+     * @param CN        Number of Clusters
+     * @param original  Image uploded by patient
+     * @param processed Processed image
      */
-    void addImage(String newImageSpecs, Bitmap Original, Bitmap Acne) {
+    void addImage(String IDate, String DID, String PID, String CN, byte[] original, byte[] processed) {
 
         try {
-            String query = "INSERT INTO IMAGE VALUES ("+ newImageSpecs +");"; // TODO How are blobs inserted into a tuple? Can we insert two at the same time?
-            Statement stmt = DBCon.createStatement();
-            stmt.execute(query);
+            String query = "INSERT INTO IMAGE VALUES (?, ?, ?, ?, ?, ?);";
+
+            PreparedStatement stmt = DBCon.prepareStatement(query);
+            stmt.setString(1, IDate);
+            stmt.setString(2, DID);
+            stmt.setString(3, PID);
+            stmt.setString(4, PID);
+            stmt.setBytes(5, original);
+            stmt.setBytes(6, processed);
+            stmt.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -234,7 +249,6 @@ public class Inquirer
      */
     void removeImage(String DID, String PID, String IDate) {
 
-        // TODO Add a cascade trigger for the CONDITION_INSTANCE Table
         String query = "DELETE FROM IMAGE WHERE PatID="+PID;
         query += " AND DocID="+DID+"AND IDate="+IDate+";";
         try {
@@ -256,7 +270,5 @@ public class Inquirer
             e.printStackTrace();
         }
     }
-
-
 
 }
